@@ -5,8 +5,12 @@ generation, from "Quiz-Style Question Generation for News Stories" to appear in
 The Web Conference 2021 (WWW'21).
 
 The dataset consists of news article URLs and their associated human-written
-question-answer pairs. Each news article has exactly four reference
-question-answer pairs.
+quiz-style question-answer pairs. Each news article has exactly four reference
+question-answer pairs. A quiz-style question is one that must be able
+to be answered without assuming that the reader has access to any other source
+material. For example, certain reading comprehension questions containing
+direct references such as "according to the passage" or dangling mentions
+such as "what did she say?" would not be considered quiz-style.
 
 For this initial release, 11.6K question-answer pairs are included out of the
 20K in the complete dataset. Additional question-answer pairs will be released
@@ -17,7 +21,8 @@ A proprietary clustering algorithm iteratively loads articles published in a
 recent time window and groups them based on content similarity. To construct the
 dataset, on a weekly basis the top 50 clusters are taken and for each cluster a
 representative article close to the centroid is selected. For each article a
-summary is generated using a PEGASUS model fine-tuned on the CNN/Dailymail
+summary is generated using a [PEGASUS](https://arxiv.org/abs/1912.08777) model
+fine-tuned on the [CNN/Dailymail](https://github.com/abisee/cnn-dailymail)
 summarization dataset. Summaries are used for more efficient data collection
 over using entire news articles, which can be long and time consuming to read
 for human writers. Each summary is then given to five human writers who are
@@ -36,7 +41,8 @@ following rules:
 From this process, we collect exactly 26,000 question-answer pairs from 5,200
 news article summaries. We then apply a post processing step to mitigate low
 quality questions. Namely, the human-written questions are processed via a
-state-of-the-art grammar error correction model in order to fix minor
+state-of-the-art [grammar error correction
+model](https://www.aclweb.org/anthology/N19-1333/) in order to fix minor
 grammar, spelling, punctuation, and capitalization errors. Then, the shortest
 question written for each summary is removed, as well as any question containing
 specific blocklisted phrases such as "I" or "According to the passage."
