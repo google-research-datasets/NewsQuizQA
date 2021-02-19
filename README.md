@@ -1,7 +1,8 @@
 # NewsQuizQA
 
 This repository contains the raw dataset used for quiz-style question-answer
-generation, from "Quiz-Style Question Generation for News Stories" to appear in
+generation, from ["Quiz-Style Question Generation for News
+Stories"](https://arxiv.org/abs/2102.09094) to appear in
 The Web Conference 2021 (WWW'21).
 
 The dataset consists of news article URLs and their associated human-written
